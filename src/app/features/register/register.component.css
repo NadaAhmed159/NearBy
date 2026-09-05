@@ -1,0 +1,5 @@
+/* Dark theme adjustment for date picker icon */
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
