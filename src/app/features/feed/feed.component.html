@@ -1,105 +1,414 @@
-<div class="min-h-screen bg-slate-950 text-slate-100 font-sans p-4 lg:p-8">
-  <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="md:col-span-2 space-y-6">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
-        <div class="flex items-center gap-3 mb-3">
-          <div
-            class="h-10 w-10 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-400"
+<div class="min-h-screen bg-slate-950 text-slate-200 py-6 px-4 sm:px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- <app-navigation-sidebar></app-navigation-sidebar>
+    <app-feed-posts></app-feed-posts>
+
+    <app-suggested-friends></app-suggested-friends>
+ -->
+
+    <!-- LEFT COLUMN: Navigation Sidebar -->
+    <aside class="hidden lg:block lg:col-span-3">
+      <div
+        class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-2 sticky top-20 space-y-1"
+      >
+        <a
+          href="#"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold bg-emerald-500 text-white shadow-md shadow-emerald-500/10"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
           >
-            A
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+            ></path>
+          </svg>
+          <span>Feed</span>
+        </a>
+
+        <a
+          href="#"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            ></path>
+          </svg>
+          <span>My Posts</span>
+        </a>
+
+        <a
+          href="#"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+            ></path>
+          </svg>
+          <span>Community</span>
+        </a>
+
+        <a
+          href="#"
+          class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
+            ></path>
+          </svg>
+          <span>Saved</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- CENTER COLUMN: Feed Posts -->
+    <main class="lg:col-span-6 space-y-6">
+      <!-- Single Post Card -->
+      <article class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-5 shadow-xl">
+        <!-- Post Header -->
+        <div class="flex items-start justify-between relative">
+          <div class="flex items-center gap-3">
+            <img
+              src="https://api.dicebear.com/7.x/avataaars/svg?seed=AhmedMenisy"
+              alt="Ahmed Menisy"
+              class="w-10 h-10 rounded-full border border-slate-700 bg-slate-950 object-cover"
+            />
+            <div>
+              <h3 class="text-xs font-bold text-slate-100">Ahmed Menisy</h3>
+              <div class="flex items-center gap-1.5 text-[11px] text-slate-500 mt-0.5">
+                <span>@menisy</span>
+                <span>•</span>
+                <span>12h</span>
+                <span>•</span>
+
+                <!-- Privacy Selector Dropdown -->
+                <div class="relative inline-block">
+                  <button
+                    (click)="togglePrivacyMenu($event)"
+                    type="button"
+                    class="flex items-center gap-1 hover:text-slate-300 transition-colors"
+                  >
+                    <span class="capitalize">{{ selectedPrivacy }}</span>
+                    <svg
+                      class="w-3 h-3"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+
+                  @if (isPrivacyMenuOpen) {
+                    <div
+                      class="absolute left-0 mt-1 w-28 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl z-20 py-1"
+                    >
+                      <button
+                        (click)="selectPrivacy('public')"
+                        class="w-full text-left px-3 py-1.5 text-[11px] text-slate-300 hover:bg-slate-900 hover:text-white"
+                      >
+                        public
+                      </button>
+                      <button
+                        (click)="selectPrivacy('followers')"
+                        class="w-full text-left px-3 py-1.5 text-[11px] text-slate-300 hover:bg-slate-900 hover:text-white"
+                      >
+                        followers
+                      </button>
+                      <button
+                        (click)="selectPrivacy('only me')"
+                        class="w-full text-left px-3 py-1.5 text-[11px] text-slate-300 hover:bg-slate-900 hover:text-white"
+                      >
+                        only me
+                      </button>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
           </div>
-          <input
-            type="text"
-            placeholder="What's on your mind, Alex?"
-            class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2 text-xs focus:outline-none focus:border-emerald-500 text-slate-200"
-          />
+
+          <!-- Post Options Menu (3 Dots) -->
+          <div class="relative">
+            <button
+              (click)="togglePostMenu($event)"
+              type="button"
+              class="p-1.5 text-slate-500 hover:text-slate-300 hover:bg-slate-800 rounded-lg transition-colors"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                ></path>
+              </svg>
+            </button>
+
+            @if (isPostMenuOpen) {
+              <div
+                class="absolute right-0 mt-1 w-36 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl z-20 p-1 space-y-0.5"
+              >
+                <button
+                  type="button"
+                  class="w-full text-left px-3 py-2 text-xs text-slate-300 hover:bg-slate-900 hover:text-white rounded-lg transition-colors"
+                >
+                  Save Post
+                </button>
+                <button
+                  type="button"
+                  class="w-full text-left px-3 py-2 text-xs text-slate-300 hover:bg-slate-900 hover:text-white rounded-lg transition-colors"
+                >
+                  Edit Post
+                </button>
+                <button
+                  type="button"
+                  class="w-full text-left px-3 py-2 text-xs text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
+                >
+                  Delete post
+                </button>
+              </div>
+            }
+          </div>
         </div>
-        <div class="flex justify-between items-center pt-2 border-t border-slate-800/80">
+
+        <!-- Post Content -->
+        <p class="text-xs text-slate-300 mt-4 mb-4 leading-relaxed">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae, quod?
+        </p>
+
+        <!-- Post Image Container -->
+        <div
+          class="rounded-xl overflow-hidden border border-slate-800 bg-emerald-500/10 mb-4 flex items-center justify-center p-12"
+        >
+          <span class="text-4xl font-black tracking-widest text-emerald-400">ROUTE</span>
+        </div>
+
+        <!-- Stats Row -->
+        <div
+          class="flex items-center justify-between text-[11px] text-slate-500 pb-3 border-b border-slate-800/80"
+        >
+          <div class="flex items-center gap-1">
+            <span
+              class="w-4 h-4 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center text-[9px] font-bold"
+              >✓</span
+            >
+            <span>0 likes</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span>0 shares</span>
+            <span>1 comments</span>
+            <a href="#" class="text-emerald-400 hover:underline">View details</a>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-3 gap-2 pt-3">
           <button
-            class="text-xs text-slate-400 hover:text-emerald-400 flex items-center gap-1.5 transition-colors"
+            type="button"
+            class="flex items-center justify-center gap-2 py-2 text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all"
           >
             <svg
-              class="w-4 h-4 text-emerald-400"
+              class="w-4 h-4"
               fill="none"
               stroke="currentColor"
+              stroke-width="2"
               viewBox="0 0 24 24"
             >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
               ></path>
             </svg>
-            Photo/Video
+            <span>Like</span>
           </button>
-          <button
-            class="py-1.5 px-4 bg-emerald-400 text-slate-950 font-bold text-xs rounded-lg shadow-md hover:bg-emerald-300 transition-all"
-          >
-            Post
-          </button>
-        </div>
-      </div>
 
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div
-              class="h-10 w-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 font-bold"
+          <button
+            type="button"
+            class="flex items-center justify-center gap-2 py-2 text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
             >
-              JD
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-white">John Doe</h4>
-              <span class="text-[10px] text-slate-400">2 hours ago</span>
-            </div>
-          </div>
-        </div>
-        <p class="text-xs text-slate-300 leading-relaxed">
-          Just launched our new social feature on NearBy! Check it out and let me know your
-          thoughts. 🚀
-        </p>
-        <div
-          class="flex items-center gap-6 pt-3 border-t border-slate-800/80 text-xs text-slate-400"
-        >
-          <button class="hover:text-emerald-400 flex items-center gap-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2"
-                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2"
-              ></path>
-            </svg>
-            Like
-          </button>
-          <button class="hover:text-emerald-400 flex items-center gap-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
                 d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
               ></path>
             </svg>
-            Comment
+            <span>Comment</span>
+          </button>
+
+          <button
+            type="button"
+            class="flex items-center justify-center gap-2 py-2 text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-xl transition-all"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+              ></path>
+            </svg>
+            <span>Share</span>
           </button>
         </div>
-      </div>
-    </div>
+      </article>
+    </main>
 
-    <div class="space-y-4">
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl">
-        <h3 class="text-xs font-bold text-white mb-3 uppercase tracking-wider text-emerald-400">
-          Trending Nearby
-        </h3>
-        <div class="space-y-2 text-xs text-slate-300">
-          <div class="p-2 bg-slate-950 rounded-xl border border-slate-800/80">#TechMeetupCairo</div>
-          <div class="p-2 bg-slate-950 rounded-xl border border-slate-800/80">
-            #AngularDevelopers
+    <!-- RIGHT COLUMN: Suggested Friends -->
+    <aside class="hidden lg:block lg:col-span-3">
+      <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-4 sticky top-20">
+        <!-- Section Header -->
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <svg
+              class="w-4 h-4 text-emerald-400"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+            <h2 class="text-xs font-bold text-slate-100">Suggested Friends</h2>
+          </div>
+          <span class="text-[10px] font-bold text-slate-400 bg-slate-800 px-2 py-0.5 rounded-md"
+            >5</span
+          >
+        </div>
+
+        <!-- Search Input -->
+        <div class="relative mb-4">
+          <span
+            class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </span>
+          <input
+            type="text"
+            placeholder="Search friends..."
+            class="w-full pl-9 pr-3 py-2 text-xs bg-slate-950 border border-slate-800 rounded-xl outline-none focus:border-slate-700 text-slate-200 placeholder-slate-600 transition-all"
+          />
+        </div>
+
+        <!-- Suggested Friend Item -->
+        <div class="bg-slate-950/60 border border-slate-800/80 rounded-xl p-3 mb-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <img
+                src="https://api.dicebear.com/7.x/avataaars/svg?seed=AhmedBahnasy"
+                alt="Ahmed Bahnasy"
+                class="w-8 h-8 rounded-full border border-slate-700 bg-slate-900 object-cover"
+              />
+              <div>
+                <h4 class="text-xs font-bold text-slate-200 leading-tight">Ahmed Bahnasy</h4>
+                <p class="text-[10px] text-slate-500">@bahnasy2022..</p>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              class="flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 rounded-lg transition-colors"
+            >
+              <svg
+                class="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+                ></path>
+              </svg>
+              <span>Follow</span>
+            </button>
+          </div>
+
+          <div
+            class="flex items-center gap-3 text-[10px] text-slate-500 mt-2 pt-2 border-t border-slate-800/60"
+          >
+            <span>41 followers</span>
+            <span>•</span>
+            <span>2 mutual</span>
           </div>
         </div>
+
+        <!-- View More Link -->
+        <button
+          type="button"
+          class="w-full py-2 text-center text-xs font-semibold text-slate-400 hover:text-white transition-colors"
+        >
+          View more
+        </button>
       </div>
-    </div>
+    </aside>
   </div>
 </div>
