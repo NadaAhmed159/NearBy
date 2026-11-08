@@ -84,8 +84,8 @@
         <!-- Avatar with Online Badge -->
         <div class="relative">
           <img
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=AhmedReda"
-            alt="Ahmed Reda"
+            [src]="userData.photo"
+            [alt]="userData.name"
             class="w-9 h-9 rounded-full border border-slate-700 bg-slate-900 object-cover"
           />
           <span
@@ -95,8 +95,8 @@
 
         <!-- User Info -->
         <div class="text-left hidden sm:block">
-          <div class="text-xs font-bold text-slate-200 leading-tight">Ahmed Reda</div>
-          <div class="text-[11px] text-slate-500 font-medium">Admin</div>
+          <div class="text-xs font-bold text-slate-200 leading-tight">{{ userData.name }}</div>
+          <div class="text-[11px] text-slate-500 font-medium">{{ userData.username }}</div>
         </div>
 
         <!-- Chevron Icon -->
@@ -216,7 +216,7 @@
 
             <button
               type="button"
-              (click)="closeMenu()"
+              (click)="signOut()"
               class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-rose-400 hover:bg-rose-500/10 transition-colors cursor-pointer"
             >
               <svg
@@ -232,7 +232,7 @@
                   d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
                 ></path>
               </svg>
-              <span (click)="signOut()">Sign Out</span>
+              <span>Sign Out</span>
             </button>
           </div>
         </div>

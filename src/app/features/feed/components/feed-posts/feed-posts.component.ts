@@ -4,10 +4,13 @@ import { PostsService } from '../../../../core/auth/services/posts.service';
 import { Post } from '../../../../core/models/posts-data.interface';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommentsComponent } from '../comments/comments.component';
+import { RouterLink } from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { TimeAgoPipe } from '../../../../shared/pipes/time-ago-pipe';
 
 @Component({
   selector: 'app-feed-posts',
-  imports: [ReactiveFormsModule, CommentsComponent],
+  imports: [ReactiveFormsModule, CommentsComponent, RouterLink, TimeAgoPipe],
   templateUrl: './feed-posts.component.html',
   styleUrl: './feed-posts.component.css',
 })

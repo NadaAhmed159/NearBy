@@ -11,6 +11,7 @@ import { authGuard } from './core/auth/guards/auth-guard';
 import { guestGuard } from './core/auth/guards/guest-guard';
 import { NotificationsComponent } from './features/notifications/notifications.component';
 import { ChangePasswordComponent } from './features/change-password/change-password.component';
+import { PostDetailesComponent } from './features/feed/components/post-detailes/post-detailes.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -33,6 +34,7 @@ export const routes: Routes = [
       { path: 'profile', component: ProfileComponent },
       { path: 'notifications', component: NotificationsComponent },
       { path: 'change-password', component: ChangePasswordComponent },
+      { path: 'details/:id', component: PostDetailesComponent },
     ],
   },
   { path: '**', component: NotFoundComponent },

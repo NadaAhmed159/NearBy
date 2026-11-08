@@ -36,6 +36,8 @@
               }
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-spin.css",
+              "node_modules/ngx-toastr/toastr.css",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.css"
             ]

@@ -36,7 +36,7 @@
 
           <!-- Comment Actions Footer -->
           <div class="flex items-center gap-3 text-[10px] text-slate-500 mt-1 ml-2">
-            <span>{{ comment.createdAt }}</span>
+            <span>{{ comment.createdAt | timeAgo }}</span>
             <button type="button" class="hover:text-emerald-400 transition-colors font-medium">
               Like {{ comment.likes.length ? '(' + comment.likes.length + ')' : '(0)' }}
             </button>
@@ -58,13 +58,13 @@
 
     <form
       (submit)="submitComment($event)"
-      class="flex-1 bg-slate-950/80 border border-slate-800 rounded-2xl p-2.5 focus-within:border-slate-700 transition-all"
+      class="flex-1 bg-slate-950/80 border border-slate-800 rounded-2xl p-2.5 focus-within:border-emerald-500 transition-all"
     >
       <textarea
         [formControl]="commentControl"
         rows="2"
         placeholder="Comment as..."
-        class="w-full bg-transparent text-xs text-slate-200 placeholder-slate-500 outline-none resize-none px-1"
+        class="w-full bg-slate-950/70 border-0 rounded-xl p-2 text-xs text-slate-200 placeholder-slate-500 outline-none focus:border-0 focus:outline-none focus:ring-0 focus:shadow-none resize-y transition-all"
       ></textarea>
 
       <!-- Selected Image Preview -->

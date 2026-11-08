@@ -3,10 +3,11 @@ import { CommentsService } from '../../../../core/auth/services/comments.service
 import { CommentData } from '../../../../core/models/comment-data.interface';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { UserInfo } from '../../../../core/models/user-data.interface';
+import { TimeAgoPipe } from '../../../../shared/pipes/time-ago-pipe';
 
 @Component({
   selector: 'app-comments',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TimeAgoPipe],
   templateUrl: './comments.component.html',
   styleUrl: './comments.component.css',
 })
