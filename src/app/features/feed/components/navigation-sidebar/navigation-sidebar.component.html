@@ -1,8 +1,14 @@
 <aside>
   <div class="bg-slate-900/80 border border-slate-800/80 rounded-2xl p-2 sticky top-20 space-y-1">
-    <a
-      href="#"
-      class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold bg-emerald-500 text-white shadow-md shadow-emerald-500/10"
+    <button
+      type="button"
+      (click)="selectMode('feed')"
+      [class]="
+        activeMode === 'feed'
+          ? 'bg-emerald-500 text-white font-semibold shadow-md shadow-emerald-500/10'
+          : 'text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium'
+      "
+      class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs transition-all cursor-pointer"
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path
@@ -12,11 +18,17 @@
         ></path>
       </svg>
       <span>Feed</span>
-    </a>
+    </button>
 
-    <a
-      routerLink="/profile"
-      class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+    <button
+      type="button"
+      (click)="selectMode('my-posts')"
+      [class]="
+        activeMode === 'my-posts'
+          ? 'bg-emerald-500 text-white font-semibold shadow-md shadow-emerald-500/10'
+          : 'text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium'
+      "
+      class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs transition-all cursor-pointer"
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path
@@ -26,11 +38,17 @@
         ></path>
       </svg>
       <span>My Posts</span>
-    </a>
+    </button>
 
-    <a
-      href="#"
-      class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+    <button
+      type="button"
+      (click)="selectMode('community')"
+      [class]="
+        activeMode === 'community'
+          ? 'bg-emerald-500 text-white font-semibold shadow-md shadow-emerald-500/10'
+          : 'text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium'
+      "
+      class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs transition-all cursor-pointer"
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path
@@ -40,11 +58,17 @@
         ></path>
       </svg>
       <span>Community</span>
-    </a>
+    </button>
 
-    <a
-      href="#"
-      class="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-medium text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all"
+    <button
+      type="button"
+      (click)="selectMode('saved')"
+      [class]="
+        activeMode === 'saved'
+          ? 'bg-emerald-500 text-white font-semibold shadow-md shadow-emerald-500/10'
+          : 'text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium'
+      "
+      class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs transition-all cursor-pointer"
     >
       <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path
@@ -54,6 +78,7 @@
         ></path>
       </svg>
       <span>Saved</span>
-    </a>
+    </button>
   </div>
 </aside>
+

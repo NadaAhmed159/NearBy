@@ -44,7 +44,8 @@ export interface SharedPost {
   _id: string;
   id: string;
 
-  image: string;
+  body?: string;
+  image?: string;
   privacy: string;
 
   user: User;

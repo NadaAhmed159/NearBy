@@ -32,6 +32,7 @@ export const routes: Routes = [
     children: [
       { path: 'feed', component: FeedComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'profile/:id', component: ProfileComponent },
       { path: 'notifications', component: NotificationsComponent },
       { path: 'change-password', component: ChangePasswordComponent },
       { path: 'details/:id', component: PostDetailesComponent },

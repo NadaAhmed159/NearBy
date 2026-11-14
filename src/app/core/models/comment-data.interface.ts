@@ -12,12 +12,24 @@ export interface CommentsData {
 export interface CommentData {
   _id: string;
   content: string;
+  image?: string;
   commentCreator: CommentCreator;
   post: string;
   parentComment: string | null;
   likes: string[];
+  likesCount?: number;
   createdAt: string;
   repliesCount: number;
+}
+
+export interface CommentRepliesResponse {
+  success: boolean;
+  message: string;
+  data: {
+    replies?: CommentData[];
+    comments?: CommentData[];
+  };
+  meta?: CommentsMeta;
 }
 
 export interface CommentCreator {

@@ -6,6 +6,7 @@ export interface UserProfileResponse {
 
 export interface UserProfile {
   user: User;
+  isFollowing?: boolean;
 }
 
 export interface User {
@@ -27,5 +28,28 @@ export interface User {
   myPostsCount?: number;
   savedPostsCount?: number;
   postsCount?: number;
+  isFollowing?: boolean;
   id: string;
 }
+
+export interface SuggestedUser {
+  _id: string;
+  id?: string;
+  name: string;
+  username: string;
+  photo: string;
+  followersCount?: number;
+  mutualFollowersCount?: number;
+  mutualCount?: number;
+  isFollowing?: boolean;
+}
+
+export interface SuggestionsResponse {
+  success: boolean;
+  message: string;
+  data: {
+    suggestions?: SuggestedUser[];
+    users?: SuggestedUser[];
+  };
+}
+

@@ -52,11 +52,16 @@ export class RegisterComponent implements OnInit {
   }
   confirmPassword(group: AbstractControl) {
     const password = group.get('password')?.value;
-    const rePassword = group.get('rePassword')?.value;
+    const rePasswordCtrl = group.get('rePassword');
+    const rePassword = rePasswordCtrl?.value;
     if (password !== rePassword && rePassword !== '') {
-      group.get('rePassword')?.setErrors({ mismatch: true });
+      rePasswordCtrl?.setErrors({ ...(rePasswordCtrl.errors || {}), mismatch: true });
       return { mismatch: true };
     } else {
+      if (rePasswordCtrl?.hasError('mismatch')) {
+        const { mismatch, ...rest } = rePasswordCtrl.errors || {};
+        rePasswordCtrl.setErrors(Object.keys(rest).length ? rest : null);
+      }
       return null;
     }
   }

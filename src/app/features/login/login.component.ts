@@ -46,7 +46,9 @@ export class LoginComponent {
       this.loginFormSub = this.authService.signIn(this.loginForm.value).subscribe({
         next: (res) => {
           localStorage.setItem('socialToken', res.data.token);
-          localStorage.setItem('userData', JSON.stringify(res.data.user));
+          if (res.data?.user) {
+            this.authService.updateStoredUserData(res.data.user);
+          }
           this.router.navigate(['/feed']);
         },
         error: (err: HttpErrorResponse) => {
